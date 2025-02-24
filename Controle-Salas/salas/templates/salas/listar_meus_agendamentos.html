@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Meus Agendamentos</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Sala</th>
+            <th>Data</th>
+            <th>Horário de Início</th>
+            <th>Horário de Fim</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for agendamento in agendamentos %}
+        <tr>
+            <td>{{ agendamento.sala.nome }}</td>
+            <td>{{ agendamento.data }}</td>
+            <td>{{ agendamento.horario_inicio }}</td>
+            <td>{{ agendamento.horario_fim }}</td>
+            <td>
+                <a href="{% url 'editar_agendamento' agendamento.pk %}" class="btn btn-warning">Editar</a>
+                <a href="{% url 'excluir_agendamento' agendamento.pk %}" class="btn btn-danger">Excluir</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="5">Você não possui agendamentos.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

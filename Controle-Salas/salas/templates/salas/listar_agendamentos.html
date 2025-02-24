@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Todos os Agendamentos</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Sala</th>
+            <th>Usuário</th>
+            <th>Data</th>
+            <th>Horário de Início</th>
+            <th>Horário de Fim</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for agendamento in agendamentos %}
+        <tr>
+            <td>{{ agendamento.sala.nome }}</td>
+            <td>{{ agendamento.usuario.username }}</td>
+            <td>{{ agendamento.data }}</td>
+            <td>{{ agendamento.horario_inicio }}</td>
+            <td>{{ agendamento.horario_fim }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="5">Nenhum agendamento encontrado.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

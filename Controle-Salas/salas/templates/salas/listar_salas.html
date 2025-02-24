@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Salas Disponíveis</h1>
+<ul>
+  {% for sala in salas %}
+    <li>
+      <a href="{% url 'detalhes_sala' sala.id %}">{{ sala.nome }}</a> 
+      (Capacidade: {{ sala.capacidade }} pessoas)
+    </li>
+  {% endfor %}
+</ul>
+{% endblock %}

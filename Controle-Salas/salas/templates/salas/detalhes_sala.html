@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>{{ sala.nome }}</h2>
+<p>Capacidade: {{ sala.capacidade }} pessoas</p>
+
+<h3>Agendamentos</h3>
+<ul>
+  {% for agendamento in agendamentos %}
+    <li>{{ agendamento.data }}: {{ agendamento.horario_inicio }} - {{ agendamento.horario_fim }}</li>
+  {% empty %}
+    <li>Sem agendamentos</li>
+  {% endfor %}
+</ul>
+{% endblock %}

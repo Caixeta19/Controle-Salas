@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Confirmar Exclusão</h1>
+<p>Tem certeza de que deseja excluir o agendamento da sala <strong>{{ agendamento.sala.nome }}</strong> no dia <strong>{{ agendamento.data }}</strong>?</p>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Confirmar Exclusão</button>
+    <a href="{% url 'listar_meus_agendamentos' %}" class="btn btn-secondary">Cancelar</a>
+</form>
+{% endblock %}
