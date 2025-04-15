@@ -1,34 +1,70 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Acesso ao Sistema</title>
-</head>
-<body>
-    <h1>Acesso ao Sistema</h1>
+{% extends "bases/baseacesso.html" %}
+{% load static %}
 
-    
-    <form method="POST" action="{% url 'logar' %}">
-        {% csrf_token %}
-        
-        <label for="usuario">Usuário:</label>
-        <input type="text" name="usuario" id="usuario" required>
-        <br><br>
-        <label for="senha">Senha:</label>
-        <input type="password" name="senha" id="senha" required>
-        <br><br>
-        <button type="submit">Entrar</button>
-    </form>
+{% block 'titulo' %}
+<title>4R | Acesso</title>
+{% endblock 'titulo' %}
+{% block 'head' %}
+{% endblock 'head' %}
+
+{% block 'conteudo' %}
 
     {% if messages %}
-        <div>
-            <ul>
-                {% for message in messages %}
-                    <li>{{ message }}</li>
-                {% endfor %}
-            </ul>
-        </div>
+    <br>
+    {% for message in messages %}
+    <div class="alert {{ message.tags }}">{{ message }}</div>
+    {% endfor %}
     {% endif %}
-</body>
-</html>
+
+    <div class="container" id="container">
+        <!--
+        <div class="form-container sign-up">
+            <form action="{% url 'cadastro' %}" method="POST">
+                {% csrf_token %}
+                <h1>Criar Conta</h1>
+                <span>ou use seu e-mail para registrar</span>
+                <input type="text" placeholder="Nome" name="nome">
+                <input type="text" placeholder="Usuário" name="usuario">
+                <input type="email" placeholder="E-mail" name="email">
+                <input type="password" placeholder="Senha" name="senha">
+                <input type="password" placeholder="Confirmar Senha" name="confirmar_senha">
+                <button type="submit" name="Cadastrar">Cadastrar</button>
+            </form>
+        </div>
+        -->
+        <div class="form-container sign-in">
+            <div class="form-img">
+                <img src="{% static 'usuarios/img/4Rmaster.png' %}" alt="">
+            </div>
+            <form action="{% url 'logar' %}" method="POST">
+                {% csrf_token %}
+                <h1>Entrar</h1>
+                <span>ou use seu e-mail e senha</span>
+                <input type="text" placeholder="Usuário" name="usuario">
+                <input type="password" placeholder="Senha" name="senha">
+                <button type="submit" name="Logar">Entrar</button>
+            </form>
+        </div>
+        <div class="toggle-container">
+            <div class="toggle">
+                <div class="toggle-panel toggle-left">
+                    <h1>Bem-vindo de Volta!</h1>
+                    <p>Insira seus dados pessoais para usar todas as funcionalidades do site</p>
+                    <button class="hidden" id="login">Entrar</button>
+                </div>
+                <div class="toggle-panel toggle-right">
+                    <!--
+                    <h1>Olá, Amigo!</h1>
+                    <p>Registre-se com seus dados pessoais para usar todas as funcionalidades do site</p>
+                    -->
+                    <h2>Bem-vindo ao Sucesso!</h2>
+                    <p><b>Na 4R, proporcionamos uma solução prática e organizada para a reserva de salas de reunião, garantindo eficiência, planejamento e ambientes adequados para o sucesso de suas atividades</b>!</p>
+                    <!--
+                    <button class="hidden" id="register">Registrar</button>
+                    -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

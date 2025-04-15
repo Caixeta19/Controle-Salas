@@ -1,8 +1,9 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Sala, Agendamento
+from .models import Sala, Agendamento, User
 from .forms import AgendamentoForm
 from .models import Agendamento
 from django.contrib.auth.decorators import login_required
+from .utils import exportar_csv
 
 @login_required(login_url='/usuarios/logar')
 def listar_salas(request):
@@ -73,3 +74,26 @@ def excluir_agendamento(request, pk):
         agendamento.delete()
         return redirect('listar_meus_agendamentos')
     return render(request, 'salas/confirmar_exclusao.html', {'agendamento': agendamento})
+
+@login_required(login_url='/usuarios/logar')
+def gerenciar_loja(request):
+    if request.user.groups.filter(name="equipe").exists():
+        return render(request, 'interno/gerenciar_loja.html')
+    else:
+        return redirect('homepage')
+
+@login_required(login_url='/usuarios/logar')
+def exportar_relatorio(request, relatorio):
+    if request.user.groups.filter(name="equipe").exists():
+        if relatorio == "salas":
+            info = Sala.objects.all()
+
+        elif relatorio == "usuarios":
+            info = User.objects.all()
+
+        elif relatorio == "agendamentos":
+            info = Agendamento.objects.all()
+        
+        return exportar_csv(info, relatorio)
+    else:
+        return redirect('homepage')
