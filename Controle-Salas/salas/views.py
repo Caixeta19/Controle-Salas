@@ -76,9 +76,9 @@ def excluir_agendamento(request, pk):
     return render(request, 'salas/confirmar_exclusao.html', {'agendamento': agendamento})
 
 @login_required(login_url='/usuarios/logar')
-def gerenciar_loja(request):
+def gerenciar_sala(request):
     if request.user.groups.filter(name="equipe").exists():
-        return render(request, 'interno/gerenciar_loja.html')
+        return render(request, 'interno/gerenciar_salas.html')
     else:
         return redirect('homepage')
 

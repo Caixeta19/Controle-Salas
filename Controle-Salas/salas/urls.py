@@ -10,4 +10,6 @@ urlpatterns = [
     path('meusagendamentos/', views.listar_meus_agendamentos, name='listar_meus_agendamentos'),
     path('agendamento/editar/<int:pk>/', views.editar_agendamento, name='editar_agendamento'),
     path('agendamento/excluir/<int:pk>/', views.excluir_agendamento, name='excluir_agendamento'),
+    path('gerenciarsala/', views.gerenciar_sala, name='gerenciar_salas'),
+    path('exportarrelatorio/<str:relatorio>/', views.exportar_relatorio, name='exportar_relatorio')
 ]
