@@ -71,13 +71,13 @@ def logar(request):
             return redirect('/usuarios/logar')
 
 # Logout do Usuário
-@login_required(login_url='/usuarios/logar')
+@login_required
 def sair(request):
     logout(request)
     return redirect('/usuarios/logar')  # Redirecionando para a página de login após logout
 
 # Alteração de Senha
-@login_required(login_url='/usuarios/logar')
+@login_required
 def trocar(request):
     if request.method == "GET":
         return render(request, 'trocarsenha.html')

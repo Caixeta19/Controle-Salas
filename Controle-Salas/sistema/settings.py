@@ -121,9 +121,10 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATIC_ROOT = ""
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'templates/static')]
-
 MEDIA_ROOT =''
 MEDIA_URL = '/media/'
+LOGIN_URL = '/usuarios/logar/'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
